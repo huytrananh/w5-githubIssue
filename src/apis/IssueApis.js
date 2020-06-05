@@ -1,20 +1,29 @@
-import axiosClient from './Base';
+import axiosClient from './Base'
 
-const getIssueList = (owner, repo) => {
-    
+const getIssueList = async (owner, repo) => {
+    let data = await axiosClient.get(`/repos/${owner}/${repo}/issues`)
+    console.log("this is the data from IssueeApis", data.data)
+    return data.data;
 }
 
-const getIssueDetail = (owner, repo, issue_number) => {
-    
+const getIssuesDetail = async (owner, repo, issue_number) => {
+    let data = await axiosClient.get(`/repos/${owner}/${repo}/issues/${issue_number}`)
+    console.log("this is the data from getIssuesDetail", data)
 }
 
-const createNewIssue = (owner, repo, title, body) => {
+const postNewIssue = async (owner, repo, title, body) => {
+    let data = await axiosClient.post(`/repos/${owner}/${repo}/issues`, {
+        "title": title,
+        "body": body,
+        
+      })
 }
 
 const IssueApis = {
     getIssueList,
-    getIssueDetail,
-    createNewIssue
+    getIssuesDetail,
+    postNewIssue
 }
 
 export default IssueApis;
+
