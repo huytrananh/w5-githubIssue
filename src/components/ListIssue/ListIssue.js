@@ -4,6 +4,8 @@ import './ListIssue.css'
 import { Container, Row } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Moment from 'react-moment';
+
 export default function ListIssue(props) {
   console.log("this is issueListFromApp", props.issueListFromApp)
   return (
@@ -21,23 +23,23 @@ export default function ListIssue(props) {
 
                     <div className="big-title">
                       <i className="fas fa-info-circle"></i>
-                      <h6>{item.title} {item.labels.map(one=> {
-                      return <span className="issue-type" style={{backgroundColor:`#${one.color}`}}>{one.name}</span>
-                    })}</h6>
+                      <h6>{item.title} {item.labels.map(one => {
+                        return <span className="issue-type" style={{ backgroundColor: `#${one.color}` }}>{one.name}</span>
+                      })}</h6>
                     </div>
 
                     <div><a href="#0"><i className="far fa-comment-alt comment-in-title"></i> {item.comments}</a></div>
-                    
+
                   </div>
 
                   <div className="post-detail">
-                    <p className="description">#{item.number} {item.created_at} by <a className="user" href="#0">{item.user.login}</a>
+                    <p className="description">#{item.number} <Moment fromNow>{item.created_at}</Moment> by <a className="user" href="#0">{item.user.login}</a>
                     </p>
                     <img className="user-avatar" alt="user-avatar" src={`${item.user.avatar_url}`} />
-                    
+
                   </div>
 
-                  
+
 
                 </div>
 
