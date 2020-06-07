@@ -1,5 +1,23 @@
+.pagination {
+    margin: 15px;
+    font-size: 14px;
+}
 .pagination li{
     margin-right: 20px;
-    background-color: yellow;
-    
+
+   
+}
+
+/* .pagination li:focus {
+ 
+} */
+
+.pagination a {
+    outline: 0;
+}
+
+.pagination .active {
+    border-bottom: 2px blue solid;
+    color: blue;
+    outline: 0;
 }

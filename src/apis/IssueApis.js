@@ -1,8 +1,9 @@
 import axiosClient from './Base'
 
-const getIssueList = async (owner, repo) => {
-    let data = await axiosClient.get(`/repos/${owner}/${repo}/issues`)
+const getIssueList = async (owner, repo, page) => {
+    let data = await axiosClient.get(`/repos/${owner}/${repo}/issues?page=${page}`)
     return data.data;
+
 }
 
 const getIssueDetail = async(owner, repo, issue_number) => {

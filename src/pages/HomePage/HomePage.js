@@ -4,23 +4,39 @@ import ListIssue from '../../components/ListIssue/ListIssue';
 import IssueApis from './../../apis/IssueApis';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './HomePage.css'
+
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 
 export default function HomePage(props) {
     let [issueList, setIssueList] = useState([]);
 
     const getList = async () => {
-        let list = await IssueApis.getIssueList("facebook", "react")
+        let list = await IssueApis.getIssueList("facebook", "react", 0)
+        // if (list.length >0) {
+        //     console.log("anh Hoan1 " + list[0].title)
+        // }
         setIssueList(list)
     }
+
+    const pageClick = async(data) => {
+        console.log(data.selected )
+        let list = await IssueApis.getIssueList("facebook", "react", data.selected +1) 
+        // if (list.length >0) {
+        //     console.log("anh Hoan2 " + list[0].title)
+        // }
+        setIssueList(list)
+    }
+
+
 
     useEffect(() => {
         getList();
     }, [])
 
     return (
-        <div>
-            <Navbar bg="dark" variant="dark">
+        <div className="HomePage-div">
+            <Navbar className="Navbar-div" bg="dark" variant="dark">
                 <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
@@ -31,13 +47,14 @@ export default function HomePage(props) {
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-info">Search</Button>
                 </Form>
+                <Button variant="outline-info post-issue">Post New Issue</Button>
             </Navbar>
             <br />
 
             <button onClick={getList}>Get</button>
             {/* <button onClick={() => IssueApis.postNewIssue()}>Post</button> */}
             <ListIssue issueListFromHomePage={issueList} />
-            <Pagination pageCount={10} handlePageClick={() => { alert("working") }} />
+            <Pagination pageCount={10} handlePageClick={pageClick} className="align-right"/>
         </div>
     )
 }
