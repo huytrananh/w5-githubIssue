@@ -40,7 +40,7 @@ export default function HomePage(props) {
             let theRepo = (new URLSearchParams(window.location.search)).get("repo")
             setRepo(theRepo)
             console.log("home " + theRepo)
-            if (theOwner.length >= 2 && theRepo.length > 2) {
+            if (theOwner != null && theOwner.length >= 2 && theRepo != null && theRepo.length > 2) {
                 getList(theOwner, theRepo, 1);
             }
         }

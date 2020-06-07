@@ -10,12 +10,18 @@ const DetailPage = (props) => {
     const [owner, setOwner] = useState("");
     const [repo, setRepo] = useState("")
     const [issueNumber, setIssueNumber] = useState("")
+    const [shouldRefresh, setShouldRefresh] = useState(false)
+
+    const refreshListComment = async () => {
+        setShouldRefresh(true);
+        console.log(Date.now())
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        console.log(Date.now())
+        setShouldRefresh(false);
+    }
 
     useEffect(() => {
         if (location.search != null) {
-            console.log("get location " + location);
-            console.log(location.pathname);
-            console.log(location.search); 
             let theOwner = (new URLSearchParams(window.location.search)).get("owner")
             setOwner(theOwner)
             let theRepo = (new URLSearchParams(window.location.search)).get("repo")
@@ -26,12 +32,13 @@ const DetailPage = (props) => {
         }
     }, [location])
 
+
     return (
         <Container className="DetailPage-div">
             <Row>
                 <Col xs={9}>
-                    <ListComment owner={owner} repo={repo} issue_number={issueNumber} />
-                    <CreateCommend />
+                    <ListComment owner={owner} repo={repo} issue_number={issueNumber} shouldRefresh={shouldRefresh} />
+                    <CreateCommend owner={owner} repo={repo} issue_number={issueNumber}  createCommendSuccess={refreshListComment} />
                 </Col>
                 <Col xs={3}>
                     <SideDetail owner={owner} repo={repo} issue_number={issueNumber} />

@@ -10,7 +10,7 @@ import EventList from '../EventList/EventList';
 
 export default function ListComment(props) {
     const [issueDetail, setIssueDetail] = useState(null);
-
+    
     const getPostDetail = async () => {
         let postDetail = await IssueApis.getIssueDetail(props.owner, props.repo, props.issue_number);
         setIssueDetail(postDetail);
@@ -77,7 +77,7 @@ export default function ListComment(props) {
                                 <EventList key="event_list" owner={props.owner} repo={props.repo} issue_number={props.issue_number} />
                             </div>
                             <div>
-                                <Comment key="event_commend" owner={props.owner} repo={props.repo} issue_number={props.issue_number} />
+                                <Comment key="event_commend" owner={props.owner} repo={props.repo} issue_number={props.issue_number} shouldRefresh={props.shouldRefresh}/>
                             </div>
                         </Col>
                     </Row>

@@ -17,7 +17,7 @@ export default function Comment(props) {
 
     useEffect(() => {
         getCommentDetail()
-    }, [])
+    }, [props.shouldRefresh])
     console.log(comment)
 
     return (
