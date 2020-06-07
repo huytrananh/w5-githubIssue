@@ -41,7 +41,7 @@ function App() {
 
   return (
     <Container>
-      <SideDetail owner='facebook' repo='react' issue_number='19054'/>
+      <SideDetail owner='facebook' repo='react' issue_number='19083'/>
       {/* <ListComment owner='facebook' repo='react' issue_number='19054'></ListComment> */}
       <CreateComment owner='huytrananh' repo='catch-monster' issue_number='4'/>
     </Container>
