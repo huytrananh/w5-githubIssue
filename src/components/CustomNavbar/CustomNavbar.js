@@ -24,9 +24,16 @@ const CustomNavbar = (props) => {
           })
     }
 
+    const goHome = () => {
+        history.push({
+            pathname: "/",
+            search: `?owner=${props.owner}&repo=${props.repo}`,
+          })
+    }
+
     return(
         <Navbar className="Navbar-div" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand onClick={goHome}>GitHub Search</Navbar.Brand>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={handleQueryChange}/>
                     <Button variant="outline-info" onClick={searchButtonClicked}>Search</Button>
