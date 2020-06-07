@@ -39,7 +39,7 @@ export default function SideDetail(props) {
                         {sideDetail.labels.length==0 ? 'No label' : 
                         <div>
                             {sideDetail.labels.map(item => {
-                                return (<Badge style={{backgroundColor:`#${item.color}`}}>{item.name}</Badge>)
+                                return (<Badge style={{backgroundColor:`#${item.color}`, width: '100%'}}>{item.name}</Badge>)
                             })}
                         </div>}
                         
