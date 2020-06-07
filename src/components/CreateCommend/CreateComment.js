@@ -1,6 +1,6 @@
-import React,{useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import './CreateComment.css'
-import {Form, Button, Row, Col, Image} from 'react-bootstrap'
+import {Form, Button, Row, Col } from 'react-bootstrap'
 import IssueApis from '../../apis/IssueApis'
 
 export default function CreateComment() {

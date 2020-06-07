@@ -15,15 +15,18 @@ export default function EventList(props) {
     }
 
     useEffect(() => {
-        getEventList()
-    }, []);
+        if (props.owner.length > 2 &&  props.repo.length > 2 && props.issue_number.length >2) {
+            getEventList()
+        }
+        
+    }, [props.owner, props.repo, props.issue_number]);
     console.log(issueEvents)
 
     return (
         <div>
             {
                 issueEvents === null ? "" :
-                    issueEvents.map(event => <EventItem event={event}/>)
+                    issueEvents.map(event => <EventItem key={`${Math.random()}`} event={event}/>)
                        
             }
         </div>

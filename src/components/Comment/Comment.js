@@ -2,7 +2,7 @@ import CommentApis from '../../apis/CommentApis';
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
-import { Row, Col, Card } from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Comment.css";
 
@@ -29,8 +29,8 @@ export default function Comment(props) {
                         {
                             comment.map(item => {
                                 return (
-                                    <div className="d-flex padding-top-bottom">
-                                        <img className="avatar" src={item.user.avatar_url} />
+                                    <div key={Math.random()} className="d-flex padding-top-bottom">
+                                        <img className="avatar" alt="" src={item.user.avatar_url} />
                                         <Card className="no-padding col-11">
                                             <Card.Header>
                                                 <a href={item.user.html_url}>{item.user.login}</a> commented&nbsp;

@@ -7,7 +7,7 @@ export default function Pagination(props) {
     return (
         <ReactPaginate
             previousLabel={<i className="fas fa-chevron-left"></i>}
-            nextLabel={<i class="fas fa-chevron-right"></i>}
+            nextLabel={<i className="fas fa-chevron-right"></i>}
             breakLabel={'...'}
             breakClassName={'break-me'}
             onPageChange={props.handlePageClick}

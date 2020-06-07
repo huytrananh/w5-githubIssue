@@ -4,17 +4,27 @@ import React, { useEffect, useState } from 'react';
 import ListIssue from '../../components/ListIssue/ListIssue';
 import Pagination from '../../components/Pagination/Pagination';
 import IssueApis from './../../apis/IssueApis';
-import {useParams} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 export default function HomePage(props) {
-    const [issueList, setIssueList] = useState([]);
+    const history = useHistory();
+    const location = useLocation();
     const [owner, setOwner] = useState("");
-    const [repo, setRepo] = useState("");
-    let { id } = useParams();
-
+    const [repo, setRepo] = useState("")
+    const [issueList, setIssueList] = useState([]);
+    
     const getList = async (owner, repo, page) => {
         let list = await IssueApis.getIssueList(owner, repo, page)
         setIssueList(list)
+    }
+
+    const selectIssue = (number) => {
+        history.push({
+            pathname: "/detail",
+            search: `?owner=${owner}&repo=${repo}&issue_number=${number}`,
+          });
     }
 
     const pageClick = async (data) => {
@@ -23,20 +33,22 @@ export default function HomePage(props) {
     }
 
     useEffect(() => {
-        if (props.query.length >= 2) {
-            let split = props.query.split("/")
-            let owner = split[0]
-            let repo = split[1]
-            setOwner(owner);
-            setRepo(repo);
-            getList(owner, repo, 1);
+        if (location.search != null) {
+            let theOwner = (new URLSearchParams(window.location.search)).get("owner")
+            console.log("home " + theOwner)
+            setOwner(theOwner)
+            let theRepo = (new URLSearchParams(window.location.search)).get("repo")
+            setRepo(theRepo)
+            console.log("home " + theRepo)
+            if (theOwner.length >= 2 && theRepo.length > 2) {
+                getList(theOwner, theRepo, 1);
+            }
         }
-        console.log(`id ${id}`);
-    }, [props.query])
+    }, [location])
 
     return (
         <div className="HomePage-div">
-            <ListIssue issueListFromHomePage={issueList} />
+            <ListIssue issueListFromHomePage={issueList} selectIssue={selectIssue} />
             {
                 issueList.length >= 2 
                 ? <Pagination pageCount={10} handlePageClick={pageClick} />

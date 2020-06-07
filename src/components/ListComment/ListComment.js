@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
-import { Navbar, Nav, Row, Col, Badge, Card } from 'react-bootstrap';
+import { Row, Col, Badge, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import IssueApis from '../../apis/IssueApis';
 import Comment from "../Comment/Comment";
@@ -17,12 +17,14 @@ export default function ListComment(props) {
     }
 
     useEffect(() => {
-        getPostDetail()
-    }, []);
+        if (props.owner.length > 2 && props.repo.length >2) {
+            getPostDetail()
+        }   
+    }, [props.owner, props.repo, props.issue_number]);
     console.log(issueDetail)
 
-    Image = (props) => {
-        return <img {...props} style={{ maxWidth: '100%' }} />
+    const Image = (props) => {
+        return <img {...props} alt="" style={{ maxWidth: '100%' }} />
     }
 
     return (
@@ -55,7 +57,7 @@ export default function ListComment(props) {
                             </h6>
 
                             <div className="d-flex">
-                                <img className="avatar" src={issueDetail.user.avatar_url} />
+                                <img className="avatar" alt="" src={issueDetail.user.avatar_url} />
                                 <Card className="card-part col-11 no-padding">
                                     <Card.Header>
                                         <a href={issueDetail.user.html_url}>{issueDetail.user.login}</a> commented&nbsp;
@@ -72,10 +74,10 @@ export default function ListComment(props) {
                                 </Card>
                             </div>
                             <div>
-                                <EventList owner="facebook" repo="react" issue_number="19073" />
+                                <EventList key="event_list" owner={props.owner} repo={props.repo} issue_number={props.issue_number} />
                             </div>
                             <div>
-                                <Comment owner="facebook" repo="react" issue_number="19073" />
+                                <Comment key="event_commend" owner={props.owner} repo={props.repo} issue_number={props.issue_number} />
                             </div>
                         </Col>
                     </Row>

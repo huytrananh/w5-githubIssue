@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Moment from 'react-moment';
 import { Container, Col } from 'react-bootstrap';
 
-export default function ListIssue(props) {
-
+const ListIssue = (props) => {
+ 
   const selectOneIssue = (number) => {
-    console.log(`Haha ${number}`)
+    props.selectIssue(number);
   }
-  
+
   return (
     <Container>
       <Col>
@@ -26,7 +26,7 @@ export default function ListIssue(props) {
                       <div className="big-title" onClick={() => selectOneIssue(item.number)} >
                         <i className="fas fa-info-circle"></i>
                         <h6>{item.title} {item.labels.map(one => {
-                          return <span key={`span${one.name}`}className="issue-type" style={{ backgroundColor: `#${one.color}` }}>{one.name}</span>
+                          return <span key={`span${one.name}`} className="issue-type" style={{ backgroundColor: `#${one.color}` }}>{one.name}</span>
                         })}</h6>
                       </div>
 
@@ -48,3 +48,5 @@ export default function ListIssue(props) {
     </Container>
   )
 }
+
+export default ListIssue;

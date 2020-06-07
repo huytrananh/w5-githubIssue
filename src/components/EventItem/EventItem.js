@@ -12,9 +12,9 @@ export default function EventItem(props) {
 
     let fullDisplayedEvent = "";
 
-    if (event == "closed") {
+    if (event === "closed") {
         fullDisplayedEvent = " closed this issue"
-    } else if (event == "mentioned") {
+    } else if (event === "mentioned") {
         fullDisplayedEvent = " mentioned this issue"
     }
 
@@ -22,10 +22,10 @@ export default function EventItem(props) {
         <div className="EventItem-div">
             <Card className="second-card-part col-10">
                 <Card.Body>
-                    <img src={avatar} className="avatar" />
+                    <img src={avatar} alt="nothing" className="avatar" />
                     <a href={account}>{name}</a>
                     {
-                        event == "labeled" ?
+                        event === "labeled" ?
                             <span> added the&nbsp;
                      <Badge style={{ backgroundColor: `#${props.event.label.color}` }}>{props.event.label.name} </Badge> label
                   </span>
