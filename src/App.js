@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import IssueApis from './apis/IssueApis';
-import ListComment from "./components/ListComment/ListComment"
+import DetailPage from "./pages/DetailPage/DetailPage";
+import ListComment from './components/ListComment/ListComment';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
@@ -33,14 +34,13 @@ function App() {
 
   useEffect(() => {
     getToken()
-    IssueApis.getIssueDetail("facebook", "react", "19073");
   }, [])
 
 
 
   return (
     <div className="App">
-      <ListComment></ListComment>
+      
     </div>
   );
 }
