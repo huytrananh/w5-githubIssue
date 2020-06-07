@@ -3,10 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import IssueApis from './apis/IssueApis';
 import SideDetail from './components/SideDetail/SideDetail';
+import CreateComment from './components/CreateCommend/CreateComment'
+import { Container } from 'react-bootstrap';
+import ListComment from './components/ListComment/ListComment'
 
 function App() {
 
-  const clientId = "";
+  const clientId = "eebe3824efbd1d20f8cb";
   const [token, setToken] = useState(null);
 
   const runNodeJsServer = () => {
@@ -37,10 +40,12 @@ function App() {
   
 
   return (
-    <div className="App">
-      <SideDetail owner='facebook' repo='react' issue_number='19060'/>
-    </div>
-  );
+    <Container>
+      <SideDetail owner='facebook' repo='react' issue_number='19054'/>
+      {/* <ListComment owner='facebook' repo='react' issue_number='19054'></ListComment> */}
+      <CreateComment owner='huytrananh' repo='catch-monster' issue_number='4'/>
+    </Container>
+  )
 }
 
 export default App;
