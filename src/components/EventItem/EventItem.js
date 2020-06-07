@@ -19,20 +19,23 @@ export default function EventItem(props) {
     }
 
     return (
-        <Card className="second-card-part">
-            <Card.Body>
-                <img src={avatar} className="avatar" />
-                <a href={account}>{name}</a>
-                {
-                    event == "labeled" ?
-                        <span> added the&nbsp;
+        <div className="EventItem-div">
+            <Card className="second-card-part col-10">
+                <Card.Body>
+                    <img src={avatar} className="avatar" />
+                    <a href={account}>{name}</a>
+                    {
+                        event == "labeled" ?
+                            <span> added the&nbsp;
                      <Badge style={{ backgroundColor: `#${props.event.label.color}` }}>{props.event.label.name} </Badge> label
                   </span>
-                        :
-                        <span>{fullDisplayedEvent}</span>
-                }&nbsp;
+                            :
+                            <span>{fullDisplayedEvent}</span>
+                    }&nbsp;
                 <Moment fromNow>{props.event.created_at}</Moment>
-            </Card.Body>
-        </Card>
+                </Card.Body>
+            </Card>
+        </div>
+
     )
 }

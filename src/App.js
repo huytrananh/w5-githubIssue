@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import IssueApis from './apis/IssueApis';
-import HomePage from './pages/HomePage';
+import DetailPage from './pages/DetailPage/DetailPage';
 
 import { Container } from 'react-bootstrap';
 
 function App() {
 
-  const clientId = "";
+  const clientId = "e4ee4f36a986c8b89542";
   const [token, setToken] = useState(null);
 
   const runNodeJsServer = () => {
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Container>
-      <HomePage />
+      <DetailPage />
     </Container>
   )
 }

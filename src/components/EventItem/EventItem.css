@@ -1,5 +1,13 @@
 .second-card-part {
     margin-bottom: 20px;
-    margin-left: 100px !important; 
-    width: 625px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.EventItem-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 10px;
 }

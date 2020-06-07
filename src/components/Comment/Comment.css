@@ -1,8 +1,13 @@
-.card-part {
-    width: 669px;
-}
-
 a {
     font-weight: bold;
     color: black;
+}
+
+.no-padding {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.padding-top-bottom {
+    margin-top: 20px !important;
 }

@@ -21,36 +21,34 @@ export default function Comment(props) {
     console.log(comment)
 
     return (
-        <div>
+        <div className="Comment-div">
             {
                 comment === null ? <h1>Loading</h1> :
 
-                    <Row>
+                    <Col className="no-padding">
                         {
                             comment.map(item => {
                                 return (
-                                    <Col xs={9}>
-                                        <div className="d-flex">
-                                            <img className="avatar" src={item.user.avatar_url} />
-                                            <Card className="card-part">
-                                                <Card.Header>
-                                                    <a href={item.user.html_url}>{item.user.login}</a> commented&nbsp;
+                                    <div className="d-flex padding-top-bottom">
+                                        <img className="avatar" src={item.user.avatar_url} />
+                                        <Card className="no-padding col-11">
+                                            <Card.Header>
+                                                <a href={item.user.html_url}>{item.user.login}</a> commented&nbsp;
                                                     <Moment fromNow>
-                                                        {item.created_at}
-                                                    </Moment>
-                                                </Card.Header>
-                                                <Card.Body>
-                                                    <ReactMarkdown
-                                                        source={item.body} />
-                                                </Card.Body>
-                                            </Card>
-                                        </div>
-                                    </Col>
+                                                    {item.created_at}
+                                                </Moment>
+                                            </Card.Header>
+                                            <Card.Body>
+                                                <ReactMarkdown
+                                                    source={item.body} />
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
                                 )
                             })
                         }
 
-                    </Row>
+                    </Col>
             }
         </div>
     )

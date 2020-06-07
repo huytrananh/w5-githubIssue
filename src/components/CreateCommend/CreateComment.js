@@ -23,6 +23,7 @@ export default function CreateComment() {
 
     return (
          <Row>
+             <Col xs={1}></Col>
             <Col xs={11}>
                 <Form onSubmit={handleSubmit} className="comment-box">
                     <Form.Group controlId="exampleForm.ControlTextarea1">

@@ -10,6 +10,10 @@ import Moment from 'react-moment';
 import Filter from './../Filter/Filter'
 
 export default function ListIssue(props) {
+
+  const selectOneIssue = (number) => {
+    console.log(`Haha ${number}`)
+  }
   console.log("this is issueListFromApp", props.issueListFromApp)
   return (
     <div className="container">
@@ -17,15 +21,15 @@ export default function ListIssue(props) {
         <div className="col-md-12">
           <div className="big-box">
 
-     
+
             {props.issueListFromHomePage.map((item, index) => {
               return (
 
-                <div className="issue-item" key={`issue${index}`}>
+                <div className="issue-item" key={`issue${index}`} >
 
                   <div className="title">
 
-                    <div className="big-title">
+                    <div className="big-title" onClick={() => selectOneIssue(item.number)} > 
                       <i className="fas fa-info-circle"></i>
                       <h6>{item.title} {item.labels.map(one => {
                         return <span className="issue-type" style={{ backgroundColor: `#${one.color}` }}>{one.name}</span>

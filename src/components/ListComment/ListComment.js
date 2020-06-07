@@ -27,19 +27,11 @@ export default function ListComment(props) {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav>
-            </Navbar>
             {
                 issueDetail === null ? <h1>Loading</h1> :
                     <Row>
-                        <Col xs={9}>
-                            <div>
+                        <Col xs={12}>
+                            <div className="ListComment-h1">
                                 <h1>
                                     {issueDetail.title}&nbsp;
                                     <span className="text-muted">
@@ -64,7 +56,7 @@ export default function ListComment(props) {
 
                             <div className="d-flex">
                                 <img className="avatar" src={issueDetail.user.avatar_url} />
-                                <Card className="card-part">
+                                <Card className="card-part col-11 no-padding">
                                     <Card.Header>
                                         <a href={issueDetail.user.html_url}>{issueDetail.user.login}</a> commented&nbsp;
                                         <Moment fromNow>

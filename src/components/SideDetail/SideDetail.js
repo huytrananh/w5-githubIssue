@@ -25,11 +25,10 @@ export default function SideDetail(props) {
 
 
     return (
-        <div>
+        <div className="SideDetail-div">
             {sideDetail == null ? <Spinner animation="border" variant="danger"/> : 
             <Row>
-                <Col xs={9}></Col>
-                <Col xs={3}>
+                <Col xs={12}>
                     <div>
                         <div>Assignees</div>
                         {sideDetail.assignee== null ? <div>No one assigned</div> : sideDetail.assignee}
@@ -39,7 +38,7 @@ export default function SideDetail(props) {
                         {sideDetail.labels.length==0 ? 'No label' : 
                         <div>
                             {sideDetail.labels.map(item => {
-                                return (<Badge style={{backgroundColor:`#${item.color}`, width: '100%'}}>{item.name}</Badge>)
+                                return (<Badge className="SideDetail-badge" style={{backgroundColor:`#${item.color}`}}>{item.name}</Badge>)
                             })}
                         </div>}
                         
