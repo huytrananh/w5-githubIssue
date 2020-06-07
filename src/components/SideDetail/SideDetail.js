@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import IssueApis from './../../apis/IssueApis';
-import {Spinner,Button} from 'react-bootstrap'
+import {Spinner,Button, Badge} from 'react-bootstrap'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './SideDetail.css'
@@ -36,7 +36,13 @@ export default function SideDetail(props) {
                     </div><hr/>
                     <div>
                         <div>Labels</div>
-                        {sideDetail.labels.length==0 ? 'Loading' : <div><a href="#">{sideDetail.labels[0].name}</a></div>}
+                        {sideDetail.labels.length==0 ? 'No label' : 
+                        <div>
+                            {sideDetail.labels.map(item => {
+                                return (<Badge style={{backgroundColor:`#${item.color}`}}>{item.name}</Badge>)
+                            })}
+                        </div>}
+                        
                     </div><hr/>
                     <div>
                         <div>Projects</div>
@@ -63,9 +69,9 @@ export default function SideDetail(props) {
                         <div>You’re not receiving notifications from this thread.</div>
                     </div><hr/>
                     <div>
-                        <div>3 participants</div>
+                        <div>1 participants</div>
                         <div>
-                            <div>Icon</div>
+                            <div><img width="40" src={sideDetail.user.avatar_url}/></div>
                         </div>
                     </div>
                 </Col>
