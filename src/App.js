@@ -14,8 +14,7 @@ function App() {
   const [token, setToken] = useState(null);
   const [owner, setOwner] = useState("");
   const [repo, setRepo] = useState("");
-  const [issueNumber, setIssueNumber] = useState("");
-
+  
   const runNodeJsServer = () => {
     const existingToken = sessionStorage.getItem('token');
     const accessToken = (window.location.search.split("=")[0] === "?access_token") ? window.location.search.split("=")[1].split("&")[0] : null;
@@ -38,9 +37,6 @@ function App() {
 
   const performSearch = (aQuery) => {
     let split = aQuery.split("/")
-    console.log(split);
-    setOwner(split[0])
-    setRepo(split[1])
     history.push({
       pathname: "/",
       search: `?owner=${split[0]}&repo=${split[1]}`,
@@ -51,12 +47,17 @@ function App() {
     runNodeJsServer()
   }, [])
 
+  const updateUrlData = (owner, repo) => {
+    setOwner(owner)
+    setRepo(repo)
+  }
+
   return (
     <div>
-      <CustomNavbar performSearch={performSearch}/>
+      <CustomNavbar performSearch={performSearch} owner={owner} repo={repo} />
       <div>
-        <Route exact={true} path="/" component={() => <HomePage />} />
-        <Route exact={true} path="/detail" component={() => <DetailPage />} />
+        <Route exact={true} path="/" component={() => <HomePage updateUrlData={updateUrlData} />} />
+        <Route exact={true} path="/detail" component={() => <DetailPage updateUrlData={updateUrlData} />} />
         <Route exact={true} path="/create" component={() => <CreateIssuePage />} />
       </div>
     </div>

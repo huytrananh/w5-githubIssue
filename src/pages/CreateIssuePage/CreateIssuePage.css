@@ -1,0 +1,10 @@
+.CreateIssuePage-container {
+    padding: 20px !important;
+}
+
+.CreateIssuePage-content {
+    text-align: start;
+    min-height: 100px;
+    justify-content: start;
+    align-items: start;
+}

@@ -16,6 +16,7 @@ const ListIssue = (props) => {
         <div className="col-md-12">
           <div className="big-box">
             {
+              props.issueListFromHomePage.length == 0 ? <img className="ListIssue-img" src="https://img.itch.zone/aW1nLzIxODA2ODgucG5n/original/f3Hb32.png" /> :
               props.issueListFromHomePage.map((item, index) => {
                 return (
 

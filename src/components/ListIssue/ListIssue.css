@@ -101,3 +101,9 @@ h3 {
 span {
     word-wrap: break-word;
 }
+
+.ListIssue-img {
+    padding: 20px;
+    margin-top: 20px;
+    width: 70vw;
+}

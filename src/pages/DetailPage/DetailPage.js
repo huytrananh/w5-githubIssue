@@ -29,6 +29,7 @@ const DetailPage = (props) => {
             let theIssueNumber = (new URLSearchParams(window.location.search)).get("issue_number")
             setIssueNumber(theIssueNumber)
             console.log(theIssueNumber); 
+            props.updateUrlData(theOwner, theRepo);
         }
     }, [location])
 

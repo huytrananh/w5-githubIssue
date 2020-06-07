@@ -17,11 +17,13 @@ const getIssueEventList = async (owner, repo, issue_number) => {
     return eventList.data;
 }
 
-const createNewIssue = (owner, repo, title, body) => {
-    return axiosClient().post(`/repos/${owner}/${repo}/issues`, {
+const createNewIssue = async (owner, repo, title, body) => {
+    let data = await axiosClient().post(`/repos/${owner}/${repo}/issues`, {
         "title": title,
         "body": body,
     })
+    console.log("createNewIssue", data);
+    return data;
 }
 
 const IssueApis = {

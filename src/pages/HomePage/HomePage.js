@@ -41,6 +41,7 @@ export default function HomePage(props) {
             setRepo(theRepo)
             console.log("home " + theRepo)
             if (theOwner != null && theOwner.length >= 2 && theRepo != null && theRepo.length > 2) {
+                props.updateUrlData(theOwner, theRepo);
                 getList(theOwner, theRepo, 1);
             }
         }
