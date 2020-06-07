@@ -1,0 +1,26 @@
+.subscribe-section{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  a{
+    text-decoration: none;
+    color: rgb(143, 143, 143);
+  }
+  a:hover{
+    color: rgb(108, 189, 255);
+    text-decoration: none !important;
+  }
+  
+  .subcribe-button{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    
+  }
+
+  .subcribe-button-text{
+    text-align: center;
+    margin-left: 10px;
+  }
