@@ -1,51 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import Pagination from '../../components/Pagination/Pagination'
-import ListIssue from '../../components/ListIssue/ListIssue';
-import IssueApis from './../../apis/IssueApis';
+import './HomePage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import './HomePage.css'
-
-import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react';
+import ListIssue from '../../components/ListIssue/ListIssue';
+import Pagination from '../../components/Pagination/Pagination';
+import IssueApis from './../../apis/IssueApis';
+import {useParams} from 'react-router-dom';
 
 export default function HomePage(props) {
-    let [issueList, setIssueList] = useState([]);
+    const [issueList, setIssueList] = useState([]);
+    const [owner, setOwner] = useState("");
+    const [repo, setRepo] = useState("");
+    let { id } = useParams();
 
-    const getList = async () => {
-        let list = await IssueApis.getIssueList("facebook", "react", 0)
-        // if (list.length >0) {
-        //     console.log("anh Hoan1 " + list[0].title)
-        // }
+    const getList = async (owner, repo, page) => {
+        let list = await IssueApis.getIssueList(owner, repo, page)
         setIssueList(list)
     }
 
-    const pageClick = async(data) => {
-        console.log(data.selected )
-        let list = await IssueApis.getIssueList("facebook", "react", data.selected +1) 
-        // if (list.length >0) {
-        //     console.log("anh Hoan2 " + list[0].title)
-        // }
+    const pageClick = async (data) => {
+        let list = await IssueApis.getIssueList(owner, repo, data.selected + 1)
         setIssueList(list)
     }
 
     useEffect(() => {
-        
-    }, [])
+        if (props.query.length >= 2) {
+            let split = props.query.split("/")
+            let owner = split[0]
+            let repo = split[1]
+            setOwner(owner);
+            setRepo(repo);
+            getList(owner, repo, 1);
+        }
+        console.log(`id ${id}`);
+    }, [props.query])
 
     return (
         <div className="HomePage-div">
-            <Navbar className="Navbar-div" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-info" onClick={getList}>Search</Button>
-                </Form>
-                <Button variant="outline-info post-issue">Post New Issue</Button>
-            </Navbar>
-            <br />
-
             <ListIssue issueListFromHomePage={issueList} />
-            <Pagination pageCount={10} handlePageClick={pageClick} className="align-right"/>
+            {
+                issueList.length >= 2 
+                ? <Pagination pageCount={10} handlePageClick={pageClick} />
+                : <div></div>
+            }
+            
         </div>
     )
 }

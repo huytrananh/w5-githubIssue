@@ -3,14 +3,13 @@
 }
 
 .align-right {
-    margin-left: 200px;
     background-color: yellow;
 }
 
 .HomePage-div {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .Navbar-div {
