@@ -1,28 +1,51 @@
 import React from 'react'
-// import ReactPaginate from 'react-paginate';
+
 import './ListIssue.css'
+import { Container, Row } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ListIssue(props) {
-    console.log("this is issueListFromApp", props.issueListFromApp)
-    return (
-        <div>{props.issueListFromHomePage.map((item, index) => {
-            return (
-    
-                <div key={`issue${index}`}>
-                <div className="title">
-                  <i className="fas fa-info-circle"></i>
-                  <h3>{item.title}</h3>
+  console.log("this is issueListFromApp", props.issueListFromApp)
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="big-box">
+
+            {props.issueListFromHomePage.map((item, index) => {
+              return (
+
+                <div className="issue-item" key={`issue${index}`}>
+
+                  <div className="title">
+
+                    <div className="big-title">
+                      <i className="fas fa-info-circle"></i>
+                      <h6>{item.title} {item.labels.map(one=> {
+                      return <span className="issue-type" style={{backgroundColor:`#${one.color}`}}>{one.name}</span>
+                    })}</h6>
+                    </div>
+
+                    <div><a href="#0"><i className="far fa-comment-alt comment-in-title"></i> {item.comments}</a></div>
+                    
+                  </div>
+
+                  <div className="post-detail">
+                    <p className="description">#{item.number} {item.created_at} by <a className="user" href="#0">{item.user.login}</a>
+                    </p>
+                    <img className="user-avatar" alt="user-avatar" src={`${item.user.avatar_url}`} />
+                    
+                  </div>
+
+                  
+
                 </div>
-                <div class="post-detail">
-                  <p className="description">#{item.number} {item.created_at} by <a className="user" href="#0">{item.user.login}</a>  </p>
-                   <img className="user-avatar" alt="user-avatar" src={`${item.user.avatar_url}`}/>
-                  <p className="description"><a href="#0"><i class="far fa-comment-alt"></i> {item.comments}</a></p>
-                </div>
-                
-              
-              </div>
-    
-            )
-          })}</div>
-    )
+
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
