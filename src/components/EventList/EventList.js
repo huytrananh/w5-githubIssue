@@ -15,7 +15,7 @@ export default function EventList(props) {
     }
 
     useEffect(() => {
-        if (props.owner.length > 2 &&  props.repo.length > 2 && props.issue_number.length >2) {
+        if (props.owner.length > 2 &&  props.repo.length > 2 && props.issue_number.length > 0) {
             getEventList()
         }
         
