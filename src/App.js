@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 
 function App() {
   const history = useHistory();
-  const clientId = "e4ee4f36a986c8b89542";
+  const clientId = "eebe3824efbd1d20f8cb";
   const [token, setToken] = useState(null);
   const [owner, setOwner] = useState("");
   const [repo, setRepo] = useState("");
