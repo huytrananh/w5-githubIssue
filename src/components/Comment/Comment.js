@@ -20,6 +20,10 @@ export default function Comment(props) {
     }, [props.shouldRefresh])
     console.log(comment)
 
+    const Image = (props) => {
+        return <img {...props} alt="" style={{ maxWidth: '100%' }} />
+    }
+
     return (
         <div className="Comment-div">
             {
@@ -40,7 +44,8 @@ export default function Comment(props) {
                                             </Card.Header>
                                             <Card.Body>
                                                 <ReactMarkdown
-                                                    source={item.body} />
+                                                    source={item.body}
+                                                    renderers={{ image: Image }} />
                                             </Card.Body>
                                         </Card>
                                     </div>
